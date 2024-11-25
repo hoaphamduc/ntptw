@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <title>Đăng Ký Hồ Sơ Tuyển Sinh</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+    <style>
+        main .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input,
+        form textarea,
+        form select {
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f7f9fc;
+            box-sizing: border-box;
+            width: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        form input:focus,
+        form textarea:focus,
+        form select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        form label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        form button {
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        #already-submitted {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #already-submitted p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        #already-submitted button {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #already-submitted button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <nav id="nav-bar">
+            <!-- Nội dung sẽ được JavaScript render -->
+        </nav>
+    </header>
+    <main class="content">
+        <section id="apply-section">
+            <h2>Đăng Ký Hồ Sơ Tuyển Sinh</h2>
+            <form id="apply-form">
+                <input type="text" id="full-name" placeholder="Họ và tên" required>
+                <input type="text" id="dob" placeholder="Ngày sinh" required>
+                <input type="text" id="email" placeholder="Email" required>
+                <textarea id="address" placeholder="Địa chỉ" required></textarea>
+
+                <!-- Tên trường cấp 3 -->
+                <input type="text" id="highschool-name" placeholder="Tên trường cấp 3" required>
+
+                <!-- Điểm tổng kết các năm -->
+                <input type="number" id="grade-10" placeholder="Điểm tổng kết lớp 10" required>
+                <input type="number" id="grade-11" placeholder="Điểm tổng kết lớp 11" required>
+                <input type="number" id="grade-12" placeholder="Điểm tổng kết lớp 12 (nếu có)">
+
+                <!-- Hình đại diện -->
+                <label for="avatar">Hình đại diện cá nhân:</label>
+                <input type="file" id="avatar" accept="image/*">
+
+                <!-- Sở thích -->
+                <textarea id="hobbies" placeholder="Sở thích của bạn"></textarea>
+
+                <!-- Chuyên ngành muốn học -->
+                <label for="major">Chọn chuyên ngành muốn học:</label>
+                <select id="major" required>
+                    <option value="">-- Chọn chuyên ngành --</option>
+                    <option value="Computer Science">Khoa học máy tính</option>
+                    <option value="Information Technology">Công nghệ thông tin</option>
+                    <option value="Software Engineering">Kỹ thuật phần mềm</option>
+                    <option value="Data Science">Khoa học dữ liệu</option>
+                    <option value="Cybersecurity">An ninh mạng</option>
+                    <option value="AI">Trí tuệ nhân tạo</option>
+                </select>
+
+                <button type="submit">Nộp Hồ Sơ</button>
+            </form>
+            <div id="already-submitted" style="display: none;">
+                <p>Bạn đã nộp hồ sơ. Bạn có thể kiểm tra trạng thái tại đây:</p>
+                <button onclick="window.location.href='status.html'">Xem Trạng Thái Hồ Sơ</button>
+            </div>
+        </section>
+    </main>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/apply.js"></script>
+    <script src="js/header.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Quản Lý Hồ Sơ</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+    <style>
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        thead tr {
+            background-color: #007bff;
+            color: white;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        thead th {
+            padding: 10px;
+            text-align: center;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            height: 60px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f7f9fc;
+        }
+
+        tbody td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Status Styles */
+
+        .status-approved {
+            color: #fff;
+            background-color: #28a745;
+            width: fit-content;
+            height: fit-content;
+            padding: 7px 15px;
+            display: block;
+            margin: auto auto;
+            border-radius: 7px;
+        }
+
+        .status-pending {
+            color: #fff;
+            background-color: #ffc107;
+            width: fit-content;
+            height: fit-content;
+            padding: 7px 15px;
+            display: block;
+            margin: auto auto;
+            border-radius: 7px;
+        }
+
+        .status-rejected {
+            color: #fff;
+            background-color: #dc3545;
+            width: fit-content;
+            height: fit-content;
+            padding: 7px 15px;
+            display: block;
+            margin: auto auto;
+            border-radius: 7px;
+        }
+
+        .status-requested {
+            color: #fff;
+            background-color: #fd7e14;
+            width: fit-content;
+            height: fit-content;
+            padding: 7px 15px;
+            display: block;
+            margin: auto auto;
+            border-radius: 7px;
+        }
+
+        /* Buttons */
+        button {
+            padding: 8px 12px;
+            font-size: 14px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .view {
+            background-color: #004ef5;
+        }
+
+        .additional-request {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .approve {
+            background-color: #28a745;
+        }
+
+        .refuse {
+            background-color: #dc3545;
+        }
+
+        /* Empty State */
+        #applications-container p {
+            text-align: center;
+            font-size: 16px;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        /* Search Input */
+        #search-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .page-btn {
+            padding: 8px 12px;
+            margin: 0 5px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <nav id="nav-bar">
+            <!-- Nội dung sẽ được JavaScript render -->
+        </nav>
+    </header>
+    <main class="content" style="overflow: auto;">
+        <section>
+            <span class="title-1">Quản Lý Hồ Sơ Thí Sinh</span>
+            <div id="search-container">
+                <input type="text" id="search-input" placeholder="Tìm kiếm theo tên" oninput="handleSearch()">
+            </div>
+            <div id="applications-container">
+                <!-- Danh sách hồ sơ sẽ được render bằng JavaScript -->
+            </div>
+        </section>
+    </main>
+    <script src="js/admin_manage.js"></script>
+    <script src="js/header.js"></script>
+</body>
+
+</html>

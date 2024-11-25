@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Đăng Ký</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+    <style>
+        #register-section {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #register-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        #register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #register-form input[type="text"],
+        #register-form input[type="password"] {
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        #register-form input[type="text"]:focus,
+        #register-form input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+        }
+
+        #register-form button {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        #register-form button:hover {
+            background-color: #0056b3;
+        }
+
+        #register-section p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        #register-section a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #register-section a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <nav id="nav-bar">
+            <!-- Nội dung sẽ được JavaScript render -->
+        </nav>
+    </header>
+    <main class="content" style="background-color: transparent;">
+        <section id="register-section">
+            <h2>Đăng Ký</h2>
+            <form id="register-form">
+                <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
+                <input type="password" id="register-password" placeholder="Mật khẩu" required>
+                <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu" required>
+                <button type="submit">Đăng Ký</button>
+            </form>
+            <p>Bạn đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+        </section>
+    </main>
+    <script src="js/register.js"></script>
+    <script src="js/header.js"></script>
+</body>
+
+</html>

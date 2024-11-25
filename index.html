@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Trang Chủ</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <nav id="nav-bar">
+            <!-- Nội dung sẽ được JavaScript render -->
+        </nav>
+    </header>
+    <main class="content">
+        <span class="title-1 no-select">Chào mừng bạn đến với hệ thống tuyển sinh khoa Công nghệ thông tin<br>Trường Đại
+            học Sư phạm Hà Nội</span>
+        <section id="news-section">
+            <span class="title-2 no-select">Tin Tức Tuyển Sinh</span>
+            <div id="news-container">
+                <!-- Bài viết sẽ được load tại đây -->
+            </div>
+        </section>
+    </main>
+    <div id="post-modal" class="modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <img id="modal-image" src="" alt="Hình ảnh bài viết" style="width: 100%; border-radius: 8px; margin: 10px 0;">
+            <p id="modal-content"></p>
+        </div>
+    </div>
+    <script src="js/header.js"></script>
+    <script>
+        // Lấy danh sách bài đăng từ Local Storage
+        function getPosts() {
+            return JSON.parse(localStorage.getItem('posts')) || [];
+        }
+
+        // Hàm tạo ID ngẫu nhiên
+        function generateRandomID() {
+            return '_' + Math.random().toString(36).substr(2, 9); // Tạo ID ngẫu nhiên
+        }
+
+        // Hiển thị bài đăng
+        function displayPosts() {
+            const posts = getPosts();
+            const newsContainer = document.getElementById('news-container');
+
+            if (posts.length === 0) {
+                newsContainer.innerHTML = '<p>Hiện chưa có tin tức nào.</p>';
+                return;
+            }
+
+            // Sắp xếp bài viết từ mới nhất đến cũ nhất
+            posts.sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt));
+
+            // Thêm ID ngẫu nhiên cho mỗi bài viết và hiển thị
+            const postsWithIDs = posts.map(post => ({ ...post, id: generateRandomID() }));
+
+            newsContainer.innerHTML = postsWithIDs.map(post => `
+                <div class="news-item">
+                    <h3 class="gradient-text">${post.title}</h3>
+                    ${post.imageBase64 ? `<img src="${post.imageBase64}" alt="Hình ảnh bài viết" class="news-image">` : ''}
+                    <p><em>Ngày đăng: ${new Date(post.postedAt).toLocaleDateString('vi-VN')} - ${new Date(post.postedAt).toLocaleTimeString('vi-VN')}</em></p>
+                    <p>${post.content}</p>
+                    <button data-id="${post.id}" class="view-more-btn">Xem thêm</button>
+                </div>
+            `).join('');
+
+            // Thêm sự kiện cho nút "Xem thêm"
+            const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+            viewMoreButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    openModal(id, postsWithIDs);
+                });
+            });
+        }
+
+        // Mở modal
+        function openModal(id, posts) {
+            const post = posts.find(post => post.id === id); // Tìm bài viết theo ID
+
+            if (!post) return; // Không tìm thấy bài viết thì thoát
+
+            // Gắn nội dung bài viết vào modal
+            document.getElementById('modal-title').textContent = post.title;
+            document.getElementById('modal-content').textContent = post.content;
+
+            // Gắn hình ảnh vào modal (nếu có)
+            const modalImage = document.getElementById('modal-image');
+            if (post.imageBase64) {
+                modalImage.src = post.imageBase64;
+                modalImage.style.display = 'block'; // Hiển thị ảnh
+            } else {
+                modalImage.style.display = 'none'; // Ẩn ảnh nếu không có
+            }
+
+            // Hiển thị modal
+            document.getElementById('post-modal').style.display = 'flex';
+        }
+
+
+        // Đóng modal
+        function closeModal() {
+            document.getElementById('post-modal').style.display = 'none';
+        }
+
+        // Gọi hàm hiển thị bài viết khi tải trang
+        document.addEventListener('DOMContentLoaded', displayPosts);
+    </script>
+</body>
+
+</html>

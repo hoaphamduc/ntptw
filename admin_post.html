@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Đăng Tin Tuyển Sinh</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+    <style>
+        /* Form section */
+        main h2 {
+            text-align: center;
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        form input[type="text"]:focus,
+        form textarea:focus,
+        form input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+        }
+
+        form textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        form label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        form button {
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Feedback message */
+        #post-feedback {
+            text-align: center;
+            font-size: 14px;
+            color: #28a745;
+            margin-top: 10px;
+        }
+
+        /* Grid container for posts */
+        #posts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* Tự động chia cột */
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        /* Individual post */
+        .post {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .post h3 {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .post img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .post button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .post button:first-of-type {
+            background-color: #ffc107;
+            color: #333;
+            margin-top: auto;
+        }
+
+        .post button:last-of-type {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .post-content {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <nav id="nav-bar">
+            <!-- Nội dung sẽ được JavaScript render -->
+        </nav>
+    </header>
+    <main class="content" id="main-content">
+        <section>
+            <h2>Đăng Tin Tuyển Sinh</h2>
+            <form id="post-form">
+                <input type="text" id="post-title" placeholder="Tiêu đề" required>
+                <textarea id="post-content" placeholder="Nội dung" required></textarea>
+
+                <!-- Upload ảnh -->
+                <label for="post-image">Thêm hình ảnh:</label>
+                <input type="file" id="post-image" accept="image/*">
+
+                <button type="submit">Đăng Tin</button>
+            </form>
+            <div id="post-feedback"></div>
+        </section>
+        <section>
+            <h2>Danh Sách Bài Đăng</h2>
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Tìm kiếm bài viết theo tiêu đề hoặc nội dung"
+                oninput="handleSearch()"
+                style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ddd;"
+            />
+            <div id="posts-container"></div>
+        </section>
+    </main>
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content"
+            style="max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px;">
+            <span class="close" onclick="closeEditModal()"
+                style="cursor: pointer; float: right; font-size: 20px;">&times;</span>
+            <h3>Chỉnh sửa bài viết</h3>
+            <form id="edit-form">
+                <label for="edit-title">Tiêu đề:</label>
+                <input type="text" id="edit-title" style="width: 100%; padding: 10px; margin-bottom: 10px;" required>
+
+                <label for="edit-content">Nội dung:</label>
+                <textarea id="edit-content" style="width: 100%; height: 100px; padding: 10px; margin-bottom: 10px;"
+                    required></textarea>
+
+                <label for="edit-image-preview">Hình ảnh hiện tại:</label>
+                <img id="edit-image-preview" src="" alt="Hình ảnh hiện tại"
+                    style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+
+                <label for="edit-image">Cập nhật hình ảnh:</label>
+                <input type="file" id="edit-image" style="margin-bottom: 10px;">
+
+                <button type="button" onclick="saveEditChanges()"
+                    style="width: 100%; background: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Lưu
+                    thay đổi</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin_post.js"></script>
+    <script src="js/header.js"></script>
+</body>
+
+</html>
