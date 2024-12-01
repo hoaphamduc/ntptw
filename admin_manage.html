@@ -8,7 +8,6 @@
     <title>Quản Lý Hồ Sơ</title>
     <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
     <style>
-        /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -50,8 +49,6 @@
         tbody tr:hover {
             background-color: #f1f1f1;
         }
-
-        /* Status Styles */
 
         .status-approved {
             color: #fff;
@@ -97,7 +94,6 @@
             border-radius: 7px;
         }
 
-        /* Buttons */
         button {
             padding: 8px 12px;
             font-size: 14px;
@@ -129,7 +125,6 @@
             background-color: #dc3545;
         }
 
-        /* Empty State */
         #applications-container p {
             text-align: center;
             font-size: 16px;
@@ -137,7 +132,6 @@
             margin-top: 20px;
         }
 
-        /* Search Input */
         #search-input {
             width: 100%;
             padding: 10px;
@@ -149,7 +143,6 @@
             box-sizing: border-box;
         }
 
-        /* Pagination */
         .pagination {
             display: flex;
             justify-content: center;
@@ -172,12 +165,17 @@
             background-color: #007bff;
             color: white;
         }
+
+        div:where(.swal2-container) .swal2-html-container {
+            text-align: left !important;
+        }
     </style>
 </head>
 
 <body>
     <header>
         <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <button id="menu-toggle" aria-label="Mở menu">&#9776;</button>
         <nav id="nav-bar">
             <!-- Nội dung sẽ được JavaScript render -->
         </nav>

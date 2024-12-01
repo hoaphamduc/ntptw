@@ -12,6 +12,7 @@
 <body>
     <header>
         <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <button id="menu-toggle" aria-label="Mở menu">&#9776;</button>
         <nav id="nav-bar">
             <!-- Nội dung sẽ được JavaScript render -->
         </nav>
@@ -44,7 +45,7 @@
 
         // Hàm tạo ID ngẫu nhiên
         function generateRandomID() {
-            return '_' + Math.random().toString(36).substr(2, 9); // Tạo ID ngẫu nhiên
+            return '_' + Math.random().toString(36).substr(2, 9);
         }
 
         // Hiển thị bài đăng

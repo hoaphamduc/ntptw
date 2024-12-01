@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Flatpickr CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="css/flatpickr.css">
     <title>Đăng Ký Hồ Sơ Tuyển Sinh</title>
     <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
     <style>
@@ -106,6 +105,7 @@
 <body>
     <header>
         <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <button id="menu-toggle" aria-label="Mở menu">&#9776;</button>
         <nav id="nav-bar">
             <!-- Nội dung sẽ được JavaScript render -->
         </nav>
@@ -138,12 +138,12 @@
                 <label for="major">Chọn chuyên ngành muốn học:</label>
                 <select id="major" required>
                     <option value="">-- Chọn chuyên ngành --</option>
-                    <option value="Computer Science">Khoa học máy tính</option>
-                    <option value="Information Technology">Công nghệ thông tin</option>
-                    <option value="Software Engineering">Kỹ thuật phần mềm</option>
-                    <option value="Data Science">Khoa học dữ liệu</option>
-                    <option value="Cybersecurity">An ninh mạng</option>
-                    <option value="AI">Trí tuệ nhân tạo</option>
+                    <option value="Khoa học máy tính">Khoa học máy tính</option>
+                    <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                    <option value="Kỹ thuật phần mềm">Kỹ thuật phần mềm</option>
+                    <option value="Khoa học dữ liệu">Khoa học dữ liệu</option>
+                    <option value="An ninh mạng">An ninh mạng</option>
+                    <option value="Trí tuệ nhân tạo">Trí tuệ nhân tạo</option>
                 </select>
 
                 <button type="submit">Nộp Hồ Sơ</button>
@@ -154,8 +154,7 @@
             </div>
         </section>
     </main>
-    <!-- Flatpickr JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/flatpickr.js"></script>
     <script src="js/apply.js"></script>
     <script src="js/header.js"></script>
 </body>

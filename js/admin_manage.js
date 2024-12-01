@@ -126,12 +126,13 @@ function viewApplicationDetails(index) {
     `;
 
     const avatar = app.avatarBase64
-        ? `<img src="${app.avatarBase64}" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%;"/>`
+        ? `<img src="${app.avatarBase64}" alt="Avatar" style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: 15px auto; border-radius: 50%; border: 1px solid #707070;"/>`
         : '<p>Chưa cung cấp</p>';
 
     Swal.fire({
         title: `Thông tin chi tiết: ${app.fullName}`,
         html: `
+            ${avatar}
             <p><strong>Họ và tên:</strong> ${app.fullName}</p>
             <p><strong>Ngày sinh:</strong> ${app.dob}</p>
             <p><strong>Email:</strong> ${app.email}</p>
@@ -140,9 +141,8 @@ function viewApplicationDetails(index) {
             <p><strong>Điểm tổng kết:</strong> ${grades}</p>
             <p><strong>Sở thích:</strong> ${app.hobbies || 'Chưa cung cấp'}</p>
             <p><strong>Ngành đăng ký:</strong> ${app.major}</p>
-            <p><strong>Hình đại diện:</strong> ${avatar}</p>
-            <p><strong>Trạng thái:</strong> ${app.status}</p>
             <p><strong>Ngày nộp:</strong> ${new Date(app.submittedAt).toLocaleString()}</p>
+            <p><strong>Trạng thái:</strong> ${app.status}</p>
         `,
         showCloseButton: true,
         confirmButtonText: 'Đóng',

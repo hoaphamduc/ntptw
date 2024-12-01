@@ -6,7 +6,6 @@ function loadSweetAlert() {
     document.head.appendChild(script);
 }
 
-// Gọi hàm để tải SweetAlert2
 loadSweetAlert();
 
 // Hàm kiểm tra người dùng hiện tại trong Local Storage
@@ -19,7 +18,6 @@ function renderNavBar() {
     const navBar = document.getElementById('nav-bar');
     const currentUser = getCurrentUser();
 
-    // Nếu chưa đăng nhập
     if (!currentUser) {
         navBar.innerHTML = `
             <a href="about.html">Giới thiệu ngành</a>
@@ -28,17 +26,14 @@ function renderNavBar() {
             <a href="register.html">Đăng ký</a>
         `;
     } else {
-        // Nếu đã đăng nhập
         let userButtons = '';
 
         if (currentUser.role === 'admin') {
-            // Nút dành cho Admin
             userButtons = `
                 <a href="admin_manage.html">Quản lý hồ sơ</a>
                 <a href="admin_post.html">Quản lý tin tức</a>
             `;
         } else if (currentUser.role === 'candidate') {
-            // Nút dành cho Thí sinh
             userButtons = `
                 <a href="apply.html">Nộp Hồ Sơ</a>
                 <a href="status.html">Theo Dõi Hồ Sơ</a>
@@ -52,7 +47,6 @@ function renderNavBar() {
             <a href="#" id="logout">Đăng xuất</a>    
         `;
 
-        // Thêm sự kiện Đăng xuất
         document.getElementById('logout').addEventListener('click', logoutUser);
     }
 }
@@ -82,4 +76,21 @@ function logoutUser() {
 }
 
 // Gọi hàm render khi tải trang
-document.addEventListener('DOMContentLoaded', renderNavBar);
+document.addEventListener('DOMContentLoaded', () => {
+    renderNavBar();
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navBar = document.getElementById('nav-bar');
+
+    if (menuToggle && navBar) {
+        menuToggle.addEventListener('click', () => {
+            navBar.classList.toggle('show');
+        });
+
+        navBar.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                navBar.classList.remove('show');
+            }
+        });
+    }
+});

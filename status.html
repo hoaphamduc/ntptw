@@ -24,7 +24,6 @@
             margin-bottom: 20px;
         }
 
-        /* Application Card */
         .application-card {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
@@ -35,7 +34,6 @@
             position: relative;
         }
 
-        /* Status Badge */
         .application-card .status-badge {
             position: absolute;
             top: 10px;
@@ -48,28 +46,22 @@
             color: white;
         }
 
-        /* Status Colors */
         .status-approved {
             background-color: #28a745;
-            /* Xanh lá */
         }
 
         .status-pending {
             background-color: #ffc107;
-            /* Cam */
         }
 
         .status-rejected {
             background-color: #dc3545;
-            /* Đỏ */
         }
 
         .status-requested {
             background-color: #fd7e14;
-            /* Vàng cam */
         }
 
-        /* Avatar */
         .application-card img.avatar-preview {
             max-width: 100px;
             max-height: 100px;
@@ -77,7 +69,6 @@
             margin: 10px 0;
         }
 
-        /* Buttons */
         .application-card button {
             padding: 10px 15px;
             font-size: 14px;
@@ -93,7 +84,6 @@
             background-color: #0056b3;
         }
 
-        /* Links */
         .application-card a {
             color: #007bff;
             text-decoration: none;
@@ -104,7 +94,6 @@
             color: #0056b3;
         }
 
-        /* Empty State */
         #status-container p {
             text-align: center;
             font-size: 16px;
@@ -117,6 +106,7 @@
 <body>
     <header>
         <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <button id="menu-toggle" aria-label="Mở menu">&#9776;</button>
         <nav id="nav-bar">
             <!-- Nội dung sẽ được JavaScript render -->
         </nav>

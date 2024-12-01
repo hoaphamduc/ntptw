@@ -291,8 +291,44 @@ main.content {
 
 #modal-image {
     width: 100%;
-    max-height: 300px; /* Đặt chiều cao tối đa cho hình ảnh */
-    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    max-height: 300px;
+    object-fit: cover;
     border-radius: 8px;
     margin: 10px 0;
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        flex-direction: column;
+        background-color: #0054a6;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        padding: 10px 20px;
+        z-index: 705105042;
+    }
+
+    header nav a {
+        margin: 10px 0;
+    }
+
+    header nav.show {
+        display: flex;
+    }
 }

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Đăng Nhập</title>
     <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
     <style>
@@ -91,6 +90,7 @@
 <body>
     <header>
         <span id="app-name" onclick="window.location.href='index.html'">Hệ Thống Tuyển Sinh</span>
+        <button id="menu-toggle" aria-label="Mở menu">&#9776;</button>
         <nav id="nav-bar">
             <!-- Nội dung sẽ được JavaScript render -->
         </nav>
@@ -102,7 +102,6 @@
                 <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
                 <input type="password" id="login-password" placeholder="Mật khẩu" required>
 
-                <!-- Checkbox "Nhớ tài khoản" -->
                 <label for="remember-me" class="remember-me">
                     <input type="checkbox" id="remember-me">
                     Nhớ tài khoản
